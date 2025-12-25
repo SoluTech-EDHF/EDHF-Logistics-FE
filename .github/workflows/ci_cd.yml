@@ -35,7 +35,7 @@ jobs:
           node-version: 22
 
       - name: Install Dependencies 
-        run: pmpn install
+        run: pnpm install
 
       - name: Build Application
         run: pnpm run build 

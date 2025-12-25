@@ -40,6 +40,9 @@ jobs:
       - name: Build Application
         run: pnpm run build 
 
+      - name: Archive Build Artifacts
+        run: tar -czf build.tar.gz dist/
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:

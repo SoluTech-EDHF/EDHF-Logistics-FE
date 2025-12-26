@@ -120,7 +120,7 @@ type(TICKET-ID): commit message
 - refactor
 - chore
 - docs
--
+- style
 
 ### Examples
 

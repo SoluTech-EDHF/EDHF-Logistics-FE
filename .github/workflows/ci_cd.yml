@@ -36,6 +36,12 @@ jobs:
       - name: Install Dependencies 
         run: pnpm install
 
+      - name: Lint with Prettier
+        run: pnpm run check-format
+
+      - name: Lint with EsLint
+        run: pnpm run lint -- --max-warnings=0
+
       - name: Create .env file for staging
         if: github.ref == 'refs/heads/staging' || (github.event_name == 'pull_request' && github.base_ref == 'staging')
         run: |

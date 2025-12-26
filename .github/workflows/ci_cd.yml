@@ -6,7 +6,6 @@ on:
     branches:
       - main
       - staging
-      - dev
   pull_request:
     branches:
       - main
@@ -37,6 +36,12 @@ jobs:
       - name: Install Dependencies 
         run: pnpm install
 
+      - name: Lint with Prettier
+        run: pnpm run check-format
+
+      - name: Lint with EsLint
+        run: pnpm run lint 
+
       - name: Create .env file for staging
         if: github.ref == 'refs/heads/staging' || (github.event_name == 'pull_request' && github.base_ref == 'staging')
         run: |
@@ -46,7 +51,7 @@ jobs:
           echo ".env file created for staging"
 
       - name: Create .env file for production
-        if: github.ref == 'refs/heads/main' ||(github.event_name == 'pull_request' && github.base_ref == 'main')
+        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.base_ref == 'main')
         run: |
           cat <<EOF > .env
           VITE_API_BASE_URL="${{ secrets.VITE_API_BASE_URL_PRODUCTION }}"

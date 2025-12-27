@@ -17,7 +17,7 @@ export const useAppStore = create<AppState>()(
       },
     ),
     {
-      enabled: import.meta.env.VITE_NODE_ENV !== "production",
+      enabled: import.meta.env.DEV,
     },
   ),
 );

@@ -6,11 +6,10 @@ export type AppState = AuthSlice;
 
 export const useAppStore = create<AppState>()(
   devtools(
-    persist(
-      (set, get, api) =>
-        ({
-          ...authSlice(set, get, api),
-        }) as AppState,
+    persist<AppState>(
+      (set, get, api) => ({
+        ...authSlice(set, get, api),
+      }),
       {
         name: "edhf-logistics-storage-v1",
         version: 1,
@@ -18,7 +17,7 @@ export const useAppStore = create<AppState>()(
     ),
     {
       enabled: import.meta.env.DEV,
-      name: "AppStore"
+      name: "AppStore",
     },
   ),
 );

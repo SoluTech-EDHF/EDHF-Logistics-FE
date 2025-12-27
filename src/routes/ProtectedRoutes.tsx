@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAppStore } from "@/store";
 
 type Props = {
   children: React.ReactNode;
@@ -8,9 +9,7 @@ type Props = {
 export const ProtectedRoutes: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
-  const isAuthenticated =
-    typeof window !== "undefined" &&
-    localStorage.getItem("isAuthenticated") === "true";
+  const isAuthenticated = useAppStore((s) => s.isAuthenticated);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;

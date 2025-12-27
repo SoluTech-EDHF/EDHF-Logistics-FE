@@ -61,6 +61,30 @@ If you have a feature idea, open an issue and describe:
 
 All code contributions should be done on a feature branch in your local clone and submitted via a pull request to the upstream repository.
 
+### Logging
+
+Please use the project's logger utility instead of `console.log` so logs are consistent and can be controlled/filtered centrally. Import the logger from `@/utils` and use the provided methods.
+
+Examples:
+
+```ts
+import { logger } from "@/utils";
+
+logger.log("AUTH", "User logged in", user);
+logger.warn("API", "Slow response detected");
+logger.error("PAYMENT", err);
+```
+
+Example output:
+
+```
+[AUTH] User logged in {id:1}
+[API] Slow response detected
+[PAYMENT] Error: insufficient funds
+```
+
+Using the `logger` instead of `console` helps with later enhancements (structured logs, remote reporting, toggleable log levels, etc.).
+
 ---
 
 ## Development Workflow

@@ -6,7 +6,6 @@ export interface User {
 }
 
 export interface AuthSlice {
-  version: number;
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
@@ -20,7 +19,6 @@ export interface AuthSlice {
 import type { StateCreator } from "zustand";
 
 export const authSlice: StateCreator<AuthSlice> = (set) => ({
-  version: 1,
   user: null,
   token: null,
   isAuthenticated: false,
@@ -28,7 +26,7 @@ export const authSlice: StateCreator<AuthSlice> = (set) => ({
   setUser: (user) => set({ user }),
   setToken: (token) => set({ token }),
   setAuthenticated: (value) => set({ isAuthenticated: value }),
-  logout: () => set({ user: null, isAuthenticated: false }),
+  logout: () => set({ user: null, token: null, isAuthenticated: false }),
 });
 
 export default authSlice;

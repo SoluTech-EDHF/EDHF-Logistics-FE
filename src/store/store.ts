@@ -12,12 +12,13 @@ export const useAppStore = create<AppState>()(
           ...authSlice(set, get, api),
         }) as AppState,
       {
-        name: "edhf-logistics-storage",
+        name: "edhf-logistics-storage-v1",
         version: 1,
       },
     ),
     {
       enabled: import.meta.env.DEV,
+      name: "AppStore"
     },
   ),
 );

@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# EDHF Logistics — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend for EDHF Logistics — a React + TypeScript application bootstrapped with Vite.
 
-Currently, two official plugins are available:
+This README gives a quick orientation, how to run the project locally, and where to look for key pieces of the codebase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- React 19 + TypeScript
+- Vite dev server with fast refresh
+- ESLint + Prettier for linting & formatting
+- Tailwind CSS for styling
+- Simple state management (zustand) and routing (react-router-dom)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js (recommended >= 18)
+- npm (or yarn/pnpm) — examples below use npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Install dependencies
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Run the dev server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+3. Open the app
+
+Visit http://localhost:5173 (Vite's default) in your browser.
+
+## Available scripts
+
+The `package.json` contains the following useful scripts:
+
+- `npm run dev` — start Vite dev server
+- `npm run build` — run TypeScript build and create a production bundle with Vite
+- `npm run preview` — locally preview the production build
+- `npm run lint` — run ESLint (auto-fix enabled)
+- `npm run format` — format source files with Prettier
+- `npm run check-format` — check formatting with Prettier
+
+Run them with `npm run <script>`.
+
+## Project structure (high level)
+
+- `src/` — application source code
+  - `assets/` — static assets
+  - `components/` — reusable components and UI primitives
+  - `pages/` — route pages
+  - `layouts/` — layout components
+  - `services/` — API and service layer
+  - `store/` — global state (zustand)
+  - `hooks/` — custom React hooks
+- `public/` — static files served as-is
+
+Example entry files:
+
+- `src/main.tsx` — app entry
+- `src/App.tsx` — top-level app component and router
+
+## Linting & formatting
+
+This project includes ESLint and Prettier. Run the formatter and linter with:
+
+```bash
+npm run format
+npm run lint
+```
+
+Husky is configured (see `prepare` script) to run git hooks if present in the repo.
+
+## Contributing
+
+Please see `CONTRIBUTING.md` for contribution guidelines and the preferred development workflow.
+
+## Notes & further steps
+
+- If you add backend API endpoints or environment variables, document them here.
+- Consider adding a `LICENSE` file if you want to make the project's license explicit.
+
+---
+
+If you'd like, I can also add a short development checklist, an example `.env` file template, or a section on testing and CI next.

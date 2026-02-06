@@ -5,6 +5,9 @@ import { AboutUsPage, ContactUsPage, HomePage } from "@/pages/external";
 import { Login } from "@/pages/auth";
 import { Dashboard } from "@/pages/app";
 import NotFound from "@/pages/NotFound";
+import SignUp from "@/pages/auth/signUp";
+import ForgetPassword from "@/pages/auth/ForgetPassword";
+import Verification from "@/pages/auth/Verification";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +22,14 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <AuthLayout />,
-    children: [{ index: true, path: "login", element: <Login /> }],
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "forget-password", element: <ForgetPassword /> },
+      { path: "verification", element: <Verification /> },
+    ],
   },
+
   {
     path: "app",
     element: <AppLayout />,

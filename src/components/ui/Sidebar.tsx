@@ -15,12 +15,12 @@ import { Button } from "../common/button/button";
 import { Skeleton } from "../common/skeleton";
 const Sidebar = () => {
   const { isLoading, typeOfUser } = useAppStore();
-  const [userType] = useState<string>(typeOfUser || "default");
+  const userType: string = typeOfUser || "default";
   const [isOpen, setIsOpen] = useState(false);
-  console.log(userType);
+//   console.log(userType);
   const pageRoute = useLocation().pathname;
   const navigate = useNavigate();
-  console.log(pageRoute);
+//   console.log(pageRoute);
 
   const sideBars = [
     {
@@ -41,7 +41,7 @@ const Sidebar = () => {
       ],
     },
     {
-      user: "customers",
+      user: "user",
       values: [
         {
           id: 1,
@@ -128,8 +128,8 @@ const Sidebar = () => {
       (name) => name.user.toLowerCase() === userType?.toLowerCase(),
     ) || sideBars;
 
-  console.log(sideBars);
-  console.log(sidebarVal);
+//   console.log(sideBars);
+//   console.log(sidebarVal);
 
   const routeTo = (location: string) => {
     navigate(location);
@@ -141,6 +141,8 @@ const Sidebar = () => {
       <button
         className={`absolute top-4 z-50 sm:hidden bg-sidebar-primary rounded-r-md cursor-pointer duration-500 p-2 text-white ${isOpen ? "right-0" : "-right-12"}`}
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-label="Toggle navigation menu"
       >
         <div
           className={`transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
@@ -151,10 +153,7 @@ const Sidebar = () => {
       <div className="w-6/10 h-10/12 flex flex-col justify-between items-center text-white">
         <div className="flex flex-col gap-19 w-full flex-1 min-h-0">
           <img src={Logo} alt="Logistics logo" className="max-w-full" />
-          <div
-            className="flex flex-col gap-11 overflow-y-auto flex-1 min-h-0"
-            style={{ scrollbarWidth: "none" }}
-          >
+          <div className="flex flex-col gap-11 overflow-y-auto flex-1 min-h-0 [scrollbar-width:none]">
             {isLoading
               ? sideBars[0].values.map((name) => (
                   <Skeleton key={name.id} className="w-full h-12 rounded-sm" />

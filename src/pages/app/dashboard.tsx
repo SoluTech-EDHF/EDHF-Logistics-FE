@@ -6,9 +6,9 @@ const Dashboard = () => {
   const { typeOfUser, isLoading, setLoading } = useAppStore();
 
   useEffect(() => {
-    if (typeOfUser && !isLoading) {
+    if (typeOfUser && isLoading) {
       setTimeout(() => {
-        setLoading(true);
+        setLoading(false);
       }, 2000);
     }
   }, [typeOfUser, isLoading, setLoading]);

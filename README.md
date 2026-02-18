@@ -50,20 +50,75 @@ Run them with `npm run <script>`.
 
 ## Project structure (high level)
 
-- `src/` — application source code
-  - `assets/` — static assets
-  - `components/` — reusable components and UI primitives
-  - `pages/` — route pages
-  - `layouts/` — layout components
-  - `services/` — API and service layer
-  - `store/` — global state (zustand)
-  - `hooks/` — custom React hooks
-- `public/` — static files served as-is
+```
+src/
+├── App.tsx                        # Top-level app component
+├── main.tsx                       # App entry point
+├── index.css                      # Global styles & Tailwind config
+├── assets/                        # Static assets (images, logos, 404 art)
+├── components/
+│   ├── common/
+│   │   ├── button/                # Reusable Button component with CVA variants
+│   │   │   ├── button.tsx
+│   │   │   └── index.ts           # buttonVariants (class-variance-authority)
+│   │   ├── input/
+│   │   │   └── input.tsx
+│   │   └── skeleton/              # Reusable Skeleton loader component
+│   │       ├── skeleton.tsx
+│   │       └── index.ts
+│   ├── icons/                     # Custom SVG icon components (Logout, MoneyBag, Notification)
+│   │   └── index.ts
+│   ├── ui/                        # UI primitives (Header, Footer, Sidebar)
+│   │   └── index.ts
+│   ├── AboutUs.tsx
+│   └── PageHead.tsx
+├── features/
+│   ├── users/                     # Role-based user management
+│   │   ├── Manage.tsx             # Routes to Admin/Rider/Customer app by role
+│   │   ├── admin/app.tsx
+│   │   ├── customers/app.tsx
+│   │   ├── riders/app.tsx
+│   │   └── index.ts
+│   └── components/                # Feature-specific component stubs (admin, customers, riders)
+├── hooks/                         # Custom React hooks (useAuth, useDebounce, useToggle)
+├── layouts/
+│   ├── AppLayout.tsx              # Authenticated app layout (with Sidebar)
+│   ├── AuthLayout.tsx             # Auth pages layout (redirects /auth → /auth/login)
+│   └── MainLayout.tsx             # Public pages layout (Header + Footer)
+├── lib/
+│   ├── utils.ts                   # cn() helper (clsx + tailwind-merge)
+│   └── queryClient.ts
+├── pages/
+│   ├── app/dashboard.tsx          # Dashboard — renders Manage by user role
+│   ├── auth/                      # Login, SignUp, ForgetPassword, Verification
+│   ├── external/                  # Home, ContactUs (public pages)
+│   └── NotFound.tsx               # 404 page with dark/light mode background
+├── routes/
+│   ├── AppRoutes.tsx              # Router config (public, auth, app, 404)
+│   └── ProtectedRoutes.tsx        # Auth guard wrapper
+├── services/
+│   ├── api/                       # Axios instance, endpoints, interceptors
+│   └── authService.ts
+├── store/
+│   ├── store.ts                   # Zustand store
+│   └── slices/authSlice.ts        # Auth state (user, token, role, loading)
+└── utils/
+    └── logger.ts                  # Logger utility
+```
 
-Example entry files:
+## Important files to note
 
-- `src/main.tsx` — app entry
-- `src/App.tsx` — top-level app component and router
+| File | Purpose |
+|------|---------|
+| `src/components/common/button/index.ts` | Button variant definitions (CVA). Padding uses longhand (`pl-*`/`pr-*`) so `twMerge` correctly resolves overrides. |
+| `src/components/common/button/button.tsx` | Button component — passes `className` separately after variants so user classes take priority. |
+| `src/components/common/skeleton/skeleton.tsx` | Reusable animated skeleton loader. Style via `className` for size/shape. |
+| `src/components/icons/` | Custom SVG icons accepting `size` and `className` props. Use `fill="currentColor"` to inherit text color. |
+| `src/components/ui/Sidebar.tsx` | Role-based sidebar with mobile hamburger menu toggle, skeleton loading states, and hidden-scrollbar overflow. |
+| `src/features/users/Manage.tsx` | Maps user role (`Admin`/`Rider`/`User`) to the correct feature app component. |
+| `src/layouts/AuthLayout.tsx` | Redirects `/auth` to `/auth/login` using `useNavigate` (not `redirect`). |
+| `src/pages/NotFound.tsx` | 404 page with adaptive dark/light background images, respecting both CSS class and OS `prefers-color-scheme`. |
+| `src/store/slices/authSlice.ts` | Zustand auth slice — manages user, token, role, loading, and authentication state. |
 
 ## Linting & formatting
 

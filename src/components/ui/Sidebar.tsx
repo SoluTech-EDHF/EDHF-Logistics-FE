@@ -17,10 +17,10 @@ const Sidebar = () => {
   const { isLoading, typeOfUser } = useAppStore();
   const userType: string = typeOfUser || "default";
   const [isOpen, setIsOpen] = useState(false);
-//   console.log(userType);
+  //   console.log(userType);
   const pageRoute = useLocation().pathname;
   const navigate = useNavigate();
-//   console.log(pageRoute);
+  //   console.log(pageRoute);
 
   const sideBars = [
     {
@@ -128,8 +128,8 @@ const Sidebar = () => {
       (name) => name.user.toLowerCase() === userType?.toLowerCase(),
     ) || sideBars;
 
-//   console.log(sideBars);
-//   console.log(sidebarVal);
+  //   console.log(sideBars);
+  //   console.log(sidebarVal);
 
   const routeTo = (location: string) => {
     navigate(location);

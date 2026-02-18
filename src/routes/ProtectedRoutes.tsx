@@ -12,7 +12,7 @@ export const ProtectedRoutes: React.FC<Props> = ({ children }) => {
   const isAuthenticated = useAppStore((s) => s.isAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
   return <>{children}</>;

@@ -1,10 +1,12 @@
+import { Sidebar } from "@/components/ui";
 import { ProtectedRoutes } from "@/routes";
 import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
   return (
     <ProtectedRoutes>
-      <div className="min-h-screen flex flex-col">
+      <div className="h-screen max-h-screen overflow-hidden flex justify-between relative">
+        <Sidebar />
         <main className="flex-1">
           <Outlet />
         </main>

@@ -6,9 +6,11 @@ const Dashboard = () => {
   const { typeOfUser, isLoading, setLoading } = useAppStore();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-    }, 2000);
+    if (typeOfUser && !isLoading) {
+      setTimeout(() => {
+        setLoading(true);
+      }, 2000);
+    }
   }, [typeOfUser, isLoading, setLoading]);
 
   if (isLoading) {
@@ -18,7 +20,7 @@ const Dashboard = () => {
   if (!typeOfUser) {
     return (
       <div className="w-full h-screen p-4">
-        No user type found {isLoading} hello
+        No user type found. Please log in to access the dashboard.
       </div>
     );
   }

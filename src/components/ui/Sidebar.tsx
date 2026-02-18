@@ -171,7 +171,7 @@ const Sidebar = () => {
                 ))}
           </div>
         </div>
-        {!isLoading ? (
+        {isLoading ? (
           <Skeleton className="w-full h-12 rounded-sm" />
         ) : (
           <Button className="text-lg flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent">

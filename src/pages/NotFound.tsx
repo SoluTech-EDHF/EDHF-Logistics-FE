@@ -60,7 +60,7 @@ const NotFound = () => {
           404 — Page not found
         </h1>
 
-        <p className="mt-4 max-w-md text-lg sm:text-xl drop-shadow-md text-gray-200 ">
+        <p className="mt-4 max-w-md text-lg sm:text-xl drop-shadow-md text-gray-200">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
 

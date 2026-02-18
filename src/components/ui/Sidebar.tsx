@@ -1,6 +1,6 @@
 import { useAppStore } from "@/store";
 import Logo from "../../assets/LOGO (2).png";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Bike,
@@ -13,6 +13,18 @@ import {
 import { Logout, MoneyBag, Notification } from "../icons";
 import { Button } from "../common/button/button";
 import { Skeleton } from "../common/skeleton";
+
+interface valueProp {
+  id: number;
+  name: string;
+  location: string;
+  icon: React.ReactNode;
+}
+
+interface siderBarRouteProp {
+  user: string;
+  values: valueProp[];
+}
 const Sidebar = () => {
   const { isLoading, typeOfUser } = useAppStore();
   const userType: string = typeOfUser || "default";
@@ -22,7 +34,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   //   console.log(pageRoute);
 
-  const sideBars = [
+  const sideBars: siderBarRouteProp[] = [
     {
       user: "default",
       values: [
@@ -70,7 +82,7 @@ const Sidebar = () => {
       ],
     },
     {
-      user: "riders",
+      user: "rider",
       values: [
         {
           id: 1,

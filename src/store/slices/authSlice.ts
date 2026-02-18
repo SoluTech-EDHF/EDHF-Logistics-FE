@@ -36,7 +36,14 @@ export const authSlice: StateCreator<AuthSlice> = (set) => ({
   setAuthenticated: (value) => set({ isAuthenticated: value }),
   setLoading: (value) => set({ isLoading: value }),
   setTypeOfUser: (value) => set({ typeOfUser: value }),
-  logout: () => set({ user: null, token: null, isAuthenticated: false }),
+  logout: () =>
+    set({
+      user: null,
+      token: null,
+      isAuthenticated: false,
+      typeOfUser: null,
+      isLoading: false,
+    }),
 });
 
 export default authSlice;

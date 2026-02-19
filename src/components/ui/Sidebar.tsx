@@ -8,9 +8,10 @@ import {
   LayoutDashboard,
   Menu,
   Settings,
+  Users,
   X,
 } from "lucide-react";
-import { Logout, MoneyBag, Notification } from "../icons";
+import { BarChart, Logout, MoneyBag, Notification, Package } from "../icons";
 import { Button } from "../common/button/button";
 import { Skeleton } from "../common/skeleton";
 
@@ -110,7 +111,7 @@ const Sidebar = () => {
         {
           id: 3,
           name: "Earnings",
-          location: "/app/rider/earning",
+          location: "/app/rider/earnings",
           icon: <MoneyBag size={24} />,
         },
         {
@@ -138,8 +139,32 @@ const Sidebar = () => {
         },
         {
           id: 2,
+          name: "Pickup & Delivery",
+          location: "/app/manage/pickup-delivery",
+          icon: <Package size={24} />,
+        },
+        {
+          id: 3,
+          name: "Drivers",
+          location: "/app/manage/drivers",
+          icon: <Bike size={24} />,
+        },
+        {
+          id: 4,
+          name: "Customers",
+          location: "/app/manage/customers",
+          icon: <Users size={24} />,
+        },
+        {
+          id: 5,
+          name: "Analytics",
+          location: "/app/manage/analytics",
+          icon: <BarChart size={24} />,
+        },
+        {
+          id: 6,
           name: "Settings",
-          location: "/app/manage/settings",
+          location: "/app/settings",
           icon: <Settings size={24} />,
         },
       ],

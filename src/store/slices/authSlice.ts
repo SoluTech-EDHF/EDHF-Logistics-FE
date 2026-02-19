@@ -29,7 +29,7 @@ export const authSlice: StateCreator<AuthSlice> = (set) => ({
   token: null,
   isAuthenticated: true,
   isLoading: false,
-  typeOfUser: "admin",
+  typeOfUser: "rider",
 
   setUser: (user) => set({ user }),
   setToken: (token) => set({ token }),

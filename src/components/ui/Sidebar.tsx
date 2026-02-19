@@ -26,7 +26,7 @@ interface siderBarRouteProp {
   values: valueProp[];
 }
 const Sidebar = () => {
-  const { isLoading, typeOfUser } = useAppStore();
+  const { isLoading, typeOfUser, logout } = useAppStore();
   const [userType, setUserType] = useState(typeOfUser || "default");
   //   const userType: string = ;
   const [isOpen, setIsOpen] = useState(false);
@@ -196,7 +196,10 @@ const Sidebar = () => {
         {isLoading ? (
           <Skeleton className="w-full h-12 rounded-sm" />
         ) : (
-          <Button className="text-lg flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent">
+          <Button
+            className="text-lg flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent"
+            onClick={logout}
+          >
             <Logout size={24} className="hover:text-red-500" />
             <span>Logout</span>
           </Button>

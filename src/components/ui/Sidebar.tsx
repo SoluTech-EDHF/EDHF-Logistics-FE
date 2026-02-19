@@ -1,6 +1,6 @@
 import { useAppStore } from "@/store";
 import Logo from "../../assets/LOGO (2).png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Bike,
@@ -27,12 +27,23 @@ interface siderBarRouteProp {
 }
 const Sidebar = () => {
   const { isLoading, typeOfUser } = useAppStore();
-  const userType: string = typeOfUser || "default";
+  const [userType, setUserType] = useState(typeOfUser || "default");
+  //   const userType: string = ;
   const [isOpen, setIsOpen] = useState(false);
-  //   console.log(userType);
+  // console.log(userType);
+  // console.log(isLoading);
+  // console.log(typeOfUser);
   const pageRoute = useLocation().pathname;
   const navigate = useNavigate();
   //   console.log(pageRoute);
+
+  useEffect(() => {
+    if (typeOfUser) {
+      setTimeout(() => {
+        setUserType(typeOfUser);
+      }, 2000);
+    }
+  }, [typeOfUser]);
 
   const sideBars: siderBarRouteProp[] = [
     {
@@ -173,7 +184,7 @@ const Sidebar = () => {
               : sidebarVal[0]?.values?.map((val) => (
                   <Button
                     key={val.id}
-                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "bg-(--sidebar-active-text)/5 text-(--sidebar-active-text) h-12" : "bg-transparent hover:bg-(--sidebar-active-text)/5 hover:text-(--sidebar-active-text) hover:h-11 transition-[height]"}`}
+                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-(--sidebar-active-text)/5 bg-(--sidebar-active-text)/5 text-(--sidebar-active-text) h-12" : "bg-transparent hover:bg-(--sidebar-active-text)/5 hover:text-(--sidebar-active-text) hover:h-11 transition-[height]"}`}
                     onClick={() => routeTo(val.location)}
                   >
                     {val.icon}

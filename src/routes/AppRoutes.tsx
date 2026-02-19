@@ -14,6 +14,7 @@ import {
   Earnings,
   RiderDeliveryHistory,
 } from "@/features/users/riders";
+import ProtectRoute from "./ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -47,9 +48,30 @@ const router = createBrowserRouter([
       { path: "notification", element: <Dashboard /> },
 
       // Rider specific routes
-      { path: "active-deliveries", element: <ActiveDeliveries /> },
-      { path: "rider/earnings", element: <Earnings /> },
-      { path: "rider/history", element: <RiderDeliveryHistory /> },
+      {
+        path: "active-deliveries",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <ActiveDeliveries />
+          </ProtectRoute>
+        ),
+      },
+      {
+        path: "rider/earnings",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <Earnings />
+          </ProtectRoute>
+        ),
+      },
+      {
+        path: "rider/history",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <RiderDeliveryHistory />
+          </ProtectRoute>
+        ),
+      },
 
       // Admin specific routes
       { path: "manage/drivers", element: <Dashboard /> },

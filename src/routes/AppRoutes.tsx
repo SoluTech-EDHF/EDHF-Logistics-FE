@@ -9,6 +9,11 @@ import SignUp from "@/pages/auth/signUp";
 import ForgetPassword from "@/pages/auth/ForgetPassword";
 import Verification from "@/pages/auth/Verification";
 import { Settings } from "@/features/users";
+import {
+  ActiveDeliveries,
+  Earnings,
+  RiderDeliveryHistory,
+} from "@/features/users/riders";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +47,9 @@ const router = createBrowserRouter([
       { path: "notification", element: <Dashboard /> },
 
       // Rider specific routes
-      { path: "active-deliveries", element: <Dashboard /> },
-      { path: "rider/earnings", element: <Dashboard /> },
-      { path: "rider/history", element: <Dashboard /> },
+      { path: "active-deliveries", element: <ActiveDeliveries /> },
+      { path: "rider/earnings", element: <Earnings /> },
+      { path: "rider/history", element: <RiderDeliveryHistory /> },
 
       // Admin specific routes
       { path: "manage/drivers", element: <Dashboard /> },

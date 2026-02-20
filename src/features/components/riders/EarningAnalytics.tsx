@@ -2,6 +2,7 @@ import { Skeleton } from "@/components/common/skeleton";
 import { Naira } from "@/components/icons";
 import { useEffect, useState } from "react";
 import { formatNumber } from "@/utils";
+import { TrendingDown, TrendingUp } from "lucide-react";
 interface analyticComponentProp {
   id: number;
   name: string;
@@ -39,8 +40,13 @@ const AnalyticsComponents = ({
           {analysis.deliveries > 1 ? "deliveries" : "delivery"}
         </p>
         <div
-          className={`flex ${analysis.analytic.includes("+") ? "text-app-green" : "text-red-500"} font-normal text-base`}
+          className={`flex items-center ${analysis.analytic.includes("+") ? "text-app-green" : "text-red-500"} font-normal text-base`}
         >
+          {analysis.analytic.includes("+") ? (
+            <TrendingUp size={16} />
+          ) : (
+            <TrendingDown size={16} />
+          )}
           {analysis.analytic}
         </div>
       </div>

@@ -24,7 +24,7 @@ const Earnings = () => {
         setDashboardSession={setDashboardSession}
         dashboardSession={dashboardSession}
       />
-      <div className="sm:px-10 mt-7 max-sm:w-9/10 w-full flex flex-col gap-12.5 overflow-y-auto [scrollbar-width:none]">
+      <div className="sm:px-10 mt-7 max-sm:w-9/10 w-full flex flex-col gap-12.5 overflow-y-auto overflow-x-hidden [scrollbar-width:none]">
         <EarningHeader isLoading={appLoading} />
         <EarningAnalytics isLoading={appLoading} />
         <RecentTransactions isLoading={appLoading} />

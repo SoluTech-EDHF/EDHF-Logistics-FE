@@ -191,6 +191,7 @@ const Sidebar = () => {
 
   const handleSidebarClick = (name: string, location: string) => {
     routeTo(location);
+    setIsOpen(!isOpen);
     if (name === "Dashboard") {
       if (dashboardSession == "profile") {
         setDashboardSession("home");

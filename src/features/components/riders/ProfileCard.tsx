@@ -24,7 +24,7 @@ const ProfileCard = ({ isLoading }: { isLoading: boolean }) => {
     <div className="w-full flex flex-col gap-6.25 ">
       <h3 className="text-2xl font-bold">Profile</h3>
       <div className="w-full min-h-47.25 bg-white shadow-md rounded-md flex justify-center pl-4.75 pr-9.75 pt-8.25">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between relative">
           <div className="flex gap-2">
             {isLoading ? (
               <Skeleton className="w-25 h-25 rounded-full bg-black/30" />
@@ -55,7 +55,7 @@ const ProfileCard = ({ isLoading }: { isLoading: boolean }) => {
                       &nbsp;
                     </Skeleton>
                   </div>
-                  <div className="flex justify-between gap-10.5 w-52">
+                  <div className="flex justify-between flex-col lg:gap-10.5 w-52 lg:flex-row gap-2">
                     <Skeleton
                       id="rider-email"
                       className="inline-flex gap-1 items-center bg-black/30 w-1/2 pl-2"
@@ -74,7 +74,7 @@ const ProfileCard = ({ isLoading }: { isLoading: boolean }) => {
                 </>
               ) : (
                 <>
-                  <div className="flex flex-col ">
+                  <div className="flex flex-col">
                     <p id="rider-name" className="font-medium text-[22px]">
                       {riderName || "John Anderson"}
                     </p>
@@ -85,7 +85,7 @@ const ProfileCard = ({ isLoading }: { isLoading: boolean }) => {
                       Rider ID: EGS-234576
                     </p>
                   </div>
-                  <div className="flex justify-between gap-10.5">
+                  <div className="flex justify-between flex-col lg:gap-10.5 w-52 lg:flex-row gap-0">
                     <p
                       id="rider-email"
                       className="text-lg text-[#212121]/85 font-normal inline-flex gap-1 items-center"
@@ -106,7 +106,7 @@ const ProfileCard = ({ isLoading }: { isLoading: boolean }) => {
             </div>
           </div>
           <Button
-            className="px-5.75 py-2.75 rounded-[5px] h-12"
+            className="px-5.75 py-2.75 rounded-[5px] h-12 max-sm:absolute max-sm:-right-5 max-sm:-top-5.5"
             disabled={isLoading}
           >
             Edit Profile

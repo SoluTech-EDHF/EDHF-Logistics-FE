@@ -65,7 +65,7 @@ const ProfileStatus = ({ isLoading }: { isLoading: boolean }) => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       {isLoading
         ? Array.from({ length: 4 }).map((_, index) => (
             <Skeleton

@@ -49,7 +49,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col items-center overflow-hidden bg-[#F2F7F8]">
+    <div className="w-full h-full flex flex-col items-center overflow-hidden">
       <RiderHeader
         isLoading={appLoading}
         setDashboardSession={setDashboardSession}

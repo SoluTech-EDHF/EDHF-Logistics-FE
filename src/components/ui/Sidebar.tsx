@@ -27,7 +27,13 @@ interface siderBarRouteProp {
   values: valueProp[];
 }
 const Sidebar = () => {
-  const { isLoading, typeOfUser, logout } = useAppStore();
+  const {
+    isLoading,
+    typeOfUser,
+    logout,
+    dashboardSession,
+    setDashboardSession,
+  } = useAppStore();
   const [userType, setUserType] = useState(typeOfUser || "default");
   //   const userType: string = ;
   const [isOpen, setIsOpen] = useState(false);
@@ -182,6 +188,15 @@ const Sidebar = () => {
   const routeTo = (location: string) => {
     navigate(location);
   };
+
+  const handleSidebarClick = (name: string, location: string) => {
+    routeTo(location);
+    if (name === "Dashboard") {
+      if (dashboardSession == "profile") {
+        setDashboardSession("home");
+      }
+    }
+  };
   return (
     <div
       className={`bg-sidebar-primary h-screen min-w-2xs md:min-w-88 max-sm:absolute max-sm:z-50 flex justify-center items-center transition-transform duration-300 ${isOpen ? "max-sm:translate-x-0" : "max-sm:-translate-x-full"}`}
@@ -210,7 +225,7 @@ const Sidebar = () => {
                   <Button
                     key={val.id}
                     className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-sidebar-active-text/5 bg-sidebar-active-text/5 text-sidebar-active-text h-12" : "bg-transparent hover:bg-sidebar-active-text/5 hover:text-sidebar-active-text hover:h-11 transition-[height]"}`}
-                    onClick={() => routeTo(val.location)}
+                    onClick={() => handleSidebarClick(val.name, val.location)}
                   >
                     {val.icon}
                     {val.name}

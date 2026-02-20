@@ -6,6 +6,7 @@ import {
 } from "@/features/components/riders";
 import { useAppStore } from "@/store";
 import { useEffect, useState } from "react";
+import ProfileSession from "./ProfileSession";
 
 export interface StatusProp {
   name: string;
@@ -14,7 +15,7 @@ export interface StatusProp {
 
 const App = () => {
   const [status, setStatus] = useState<StatusProp[] | []>([]);
-  const { isLoading } = useAppStore();
+  const { isLoading, dashboardSession, setDashboardSession } = useAppStore();
   const [appLoading, setappLoading] = useState(true);
   useEffect(() => {
     if (!isLoading) {
@@ -49,17 +50,25 @@ const App = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center overflow-hidden bg-[#F2F7F8]">
-      <RiderHeader isLoading={appLoading} />
-      <div className="sm:px-10 mt-7 max-sm:w-9/10 w-full flex flex-col gap-7 overflow-y-auto [scrollbar-width:none]">
-        <RiderGreeting
-          isLoading={appLoading}
-          activeDeliveries={
-            status.find((s) => s.name === "Active Deliveries")?.value ?? 0
-          }
-        />
-        <RiderStatus status={status} isLoading={appLoading} />
-        <RiderWeeklyPerformance isLoading={appLoading} />
-      </div>
+      <RiderHeader
+        isLoading={appLoading}
+        setDashboardSession={setDashboardSession}
+        dashboardSession={dashboardSession}
+      />
+      {dashboardSession === "profile" ? (
+        <ProfileSession />
+      ) : (
+        <div className="sm:px-10 mt-7 max-sm:w-9/10 w-full flex flex-col gap-7 overflow-y-auto [scrollbar-width:none]">
+          <RiderGreeting
+            isLoading={appLoading}
+            activeDeliveries={
+              status.find((s) => s.name === "Active Deliveries")?.value ?? 0
+            }
+          />
+          <RiderStatus status={status} isLoading={appLoading} />
+          <RiderWeeklyPerformance isLoading={appLoading} />
+        </div>
+      )}
     </div>
   );
 };

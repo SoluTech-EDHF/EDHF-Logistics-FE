@@ -1,8 +1,17 @@
 import { Skeleton } from "@/components/common/skeleton";
 import { Package } from "@/components/icons";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Header = ({ isLoading }: { isLoading?: boolean }) => {
+const Header = ({
+  isLoading,
+  setDashboardSession,
+  dashboardSession,
+}: {
+  isLoading: boolean;
+  setDashboardSession: (session: string) => void;
+  dashboardSession: string | null;
+}) => {
   const [image, setImage] = useState<string>("");
   const [riderName, setRiderName] = useState<string>("John Anderson");
   useEffect(() => {
@@ -20,6 +29,18 @@ const Header = ({ isLoading }: { isLoading?: boolean }) => {
         .map((name) => name[0])
         .join("")
     : "NA";
+
+  const navigate = useNavigate();
+
+  const handleProfileSwitch = () => {
+    if (dashboardSession !== "profile") {
+      navigate("/app");
+      setDashboardSession("profile");
+    } else {
+      navigate("/app");
+      setDashboardSession("home");
+    }
+  };
   return (
     <header className="w-full h-26 bg-white shadow-md flex items-end justify-center pt-8 pb-4">
       <div className="w-9/10 h-full flex items-center justify-between">
@@ -45,7 +66,7 @@ const Header = ({ isLoading }: { isLoading?: boolean }) => {
               </p>
             </div>
 
-            <div className="flex">
+            <div className="flex cursor-pointer" onClick={handleProfileSwitch}>
               {image ? (
                 <img
                   src={image}
@@ -53,8 +74,8 @@ const Header = ({ isLoading }: { isLoading?: boolean }) => {
                   className="w-13.5 h-13.5 rounded-full"
                 />
               ) : (
-                <span className="w-13.5 h-13.5 rounded-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-sm font-bold text-gray-700">
+                <span className="w-13.5 h-13.5 rounded-full bg-app-blue flex items-center justify-center">
+                  <span className="text-xl font-medium text-white">
                     {riderInitials}
                   </span>
                 </span>

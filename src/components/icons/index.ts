@@ -1,5 +1,6 @@
 export { default as BarChart } from "./BarChart";
 export { default as Logout } from "./Logout";
+export { default as Medal } from "./Medal";
 export { default as Money } from "./Money";
 export { default as MoneyBag } from "./MoneyBag";
 export { default as Naira } from "./Naira";

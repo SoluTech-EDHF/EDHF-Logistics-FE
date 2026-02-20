@@ -13,19 +13,21 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const colorMap: Record<string, string> = {
   "Active Deliveries": "app-orange",
-  "Completed Today": "rider-blue",
-  "Today's Earnings": "rider-green",
+  "Completed Today": "app-blue",
+  "Today's Earnings": "app-green",
   Rating: "app-orange",
 };
 
+export interface StatusItem {
+  id: number;
+  icon: React.ReactNode;
+  name: string;
+  value: number;
+  color: string;
+}
+
 interface StatusItemProps {
-  status: {
-    id: number;
-    icon: React.ReactNode;
-    name: string;
-    value: number;
-    color: string;
-  };
+  status: StatusItem;
 }
 
 interface StatusProps {
@@ -54,7 +56,7 @@ const StatusComponent = ({ status }: StatusItemProps) => {
 };
 
 const Status = ({ status, isLoading }: StatusProps) => {
-  const statusValues = status.map((item, index) => ({
+  const statusValues: StatusItem[] = status.map((item, index) => ({
     id: index + 1,
     icon: iconMap[item.name] ?? (
       <Package size={24} className="text-app-orange" />

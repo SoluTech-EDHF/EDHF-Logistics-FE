@@ -37,14 +37,15 @@
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-active-text-primary: var(--sidebar-active-text-bg);
+  --color-sidebar-active-text: var(--sidebar-active-text);
+  --color-app-orange: var(--sidebar-active-text);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-rider-blue: var(--rider-blue);
-  --color-rider-green: var(--rider-green);
+  --color-app-blue: var(--app-blue);
+  --color-app-green: var(--app-green);
 }
 
 :root {
@@ -81,9 +82,8 @@
   --sidebar-border: rgb(226, 232, 240);
   --sidebar-ring: rgb(144, 161, 185);
   --sidebar-active-text: rgb(255, 102, 0);
-  /*Rider colors  */
-  --rider-blue: rgb(0, 81, 138);
-  --rider-green: rgb(55, 213, 119);
+  --app-blue: rgb(0, 81, 138);
+  --app-green: rgb(55, 213, 119);
 }
 
 .dark {

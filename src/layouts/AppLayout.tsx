@@ -7,7 +7,7 @@ const AppLayout = () => {
     <ProtectedRoutes>
       <div className="h-screen max-h-screen overflow-hidden flex justify-between relative">
         <Sidebar />
-        <main className="flex-1">
+        <main className="flex-1 h-full overflow-hidden">
           <Outlet />
         </main>
       </div>

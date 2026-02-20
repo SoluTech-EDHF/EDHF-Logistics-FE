@@ -209,7 +209,7 @@ const Sidebar = () => {
               : sidebarVal[0]?.values?.map((val) => (
                   <Button
                     key={val.id}
-                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-(--sidebar-active-text)/5 bg-(--sidebar-active-text)/5 text-(--sidebar-active-text) h-12" : "bg-transparent hover:bg-(--sidebar-active-text)/5 hover:text-(--sidebar-active-text) hover:h-11 transition-[height]"}`}
+                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-sidebar-active-text/5 bg-sidebar-active-text/5 text-sidebar-active-text h-12" : "bg-transparent hover:bg-sidebar-active-text/5 hover:text-sidebar-active-text hover:h-11 transition-[height]"}`}
                     onClick={() => routeTo(val.location)}
                   >
                     {val.icon}

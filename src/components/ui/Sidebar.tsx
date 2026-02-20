@@ -224,7 +224,7 @@ const Sidebar = () => {
               : sidebarVal[0]?.values?.map((val) => (
                   <Button
                     key={val.id}
-                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-sidebar-active-text/5 bg-sidebar-active-text/5 text-sidebar-active-text h-12" : "bg-transparent hover:bg-sidebar-active-text/5 hover:text-sidebar-active-text hover:h-11 transition-[height]"}`}
+                    className={`w-full text-lg font-normal h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-sidebar-active-text/5 bg-sidebar-active-text/5 text-sidebar-active-text h-12" : "bg-transparent hover:bg-sidebar-active-text/5 hover:text-sidebar-active-text hover:h-11 transition-[height]"}`}
                     onClick={() => handleSidebarClick(val.name, val.location)}
                   >
                     {val.icon}
@@ -237,7 +237,7 @@ const Sidebar = () => {
           <Skeleton className="w-full h-12 rounded-sm" />
         ) : (
           <Button
-            className="text-lg flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent"
+            className="text-lg font-normal flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent"
             onClick={logout}
           >
             <Logout size={24} className="hover:text-red-500" />

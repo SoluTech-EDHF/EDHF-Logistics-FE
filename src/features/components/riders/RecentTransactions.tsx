@@ -55,7 +55,7 @@ const RecentTransaction = ({
 };
 
 const RecentTransactions = ({ isLoading }: { isLoading: boolean }) => {
-  const [Transactions, setTransactions] = useState<TransactionCompProp[] | []>(
+  const [transactions, setTransactions] = useState<TransactionCompProp[] | []>(
     [],
   );
 
@@ -105,7 +105,7 @@ const RecentTransactions = ({ isLoading }: { isLoading: boolean }) => {
               className="min-h-24.25 bg-black/30 rounded-none not-last:border-b border-b-[#212121]/85"
             />
           ))
-        : Transactions.map((transaction) => (
+        : transactions.map((transaction) => (
             <RecentTransaction key={transaction.id} transaction={transaction} />
           ))}
     </div>

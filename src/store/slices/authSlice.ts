@@ -27,9 +27,9 @@ import type { StateCreator } from "zustand";
 export const authSlice: StateCreator<AuthSlice> = (set) => ({
   user: null,
   token: null,
-  isAuthenticated: true,
+  isAuthenticated: false,
   isLoading: false,
-  typeOfUser: "rider",
+  typeOfUser: null,
 
   setUser: (user) => set({ user }),
   setToken: (token) => set({ token }),

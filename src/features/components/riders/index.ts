@@ -13,3 +13,8 @@ export { default as ProfileAchievements } from "./ProfileAchievements";
 export { default as EarningHeader } from "./EarningHeader";
 export { default as EarningAnalytics } from "./EarningAnalytics";
 export { default as RecentTransactions } from "./RecentTransactions";
+
+// settings components
+export { default as SettingHeader } from "./SettingHeader";
+export { default as NotificationSettings } from "./NotificationSettings";
+export { default as AvailabilitySettings } from "./AvailabilitySettings";

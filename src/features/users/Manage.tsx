@@ -2,7 +2,7 @@ import { logger } from "@/utils";
 import { AdminApp } from "./admin";
 import { RiderApp } from "./riders";
 import { CustomerApp } from "./customers";
-type UserRole = "admin" | "rider" | "user";
+export type UserRole = "admin" | "rider" | "user";
 
 const componentMap: Record<UserRole, React.FC> = {
   admin: AdminApp,

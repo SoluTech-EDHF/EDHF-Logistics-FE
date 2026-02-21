@@ -8,6 +8,13 @@ import NotFound from "@/pages/NotFound";
 import SignUp from "@/pages/auth/signUp";
 import ForgetPassword from "@/pages/auth/ForgetPassword";
 import Verification from "@/pages/auth/Verification";
+import { Settings } from "@/features/users";
+import {
+  ActiveDeliveries,
+  Earnings,
+  RiderDeliveryHistory,
+} from "@/features/users/riders";
+import ProtectRoute from "./ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,9 +38,45 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "app",
+    path: "/app",
     element: <AppLayout />,
-    children: [{ index: true, element: <Dashboard /> }],
+    children: [
+      // General routes for all users
+      { index: true, element: <Dashboard /> },
+      { path: "settings", element: <Settings /> },
+      { path: "dispatch", element: <Dashboard /> },
+      { path: "notification", element: <Dashboard /> },
+
+      // Rider specific routes
+      {
+        path: "active-deliveries",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <ActiveDeliveries />
+          </ProtectRoute>
+        ),
+      },
+      {
+        path: "rider/earnings",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <Earnings />
+          </ProtectRoute>
+        ),
+      },
+      {
+        path: "rider/history",
+        element: (
+          <ProtectRoute allowedRoles={["rider"]}>
+            <RiderDeliveryHistory />
+          </ProtectRoute>
+        ),
+      },
+
+      // Admin specific routes
+      { path: "manage/drivers", element: <Dashboard /> },
+      // { path: "", element: <Dashboard /> },
+    ],
   },
 
   { path: "*", element: <NotFound /> },

@@ -5,7 +5,7 @@ export interface User {
   image?: string;
 }
 
-type UserRole = "Admin" | "Rider" | "User" | null;
+type UserRole = "admin" | "rider" | "user" | null;
 
 export interface AuthSlice {
   user: User | null;

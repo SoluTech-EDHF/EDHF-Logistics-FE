@@ -1,14 +1,15 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { authSlice, type AuthSlice } from "./slices";
+import { appSlice, authSlice, type AppSlice, type AuthSlice } from "./slices";
 
-export type AppState = AuthSlice;
+export type AppState = AuthSlice & AppSlice;
 
 export const useAppStore = create<AppState>()(
   devtools(
     persist<AppState>(
       (set, get, api) => ({
         ...authSlice(set, get, api),
+        ...appSlice(set, get, api),
       }),
       {
         name: "edhf-logistics-storage-v1",

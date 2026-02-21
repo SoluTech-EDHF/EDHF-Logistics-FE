@@ -1,6 +1,6 @@
 import { useAppStore } from "@/store";
 import Logo from "../../assets/LOGO (2).png";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Bike,
@@ -8,21 +8,51 @@ import {
   LayoutDashboard,
   Menu,
   Settings,
+  Users,
   X,
 } from "lucide-react";
-import { Logout, MoneyBag, Notification } from "../icons";
+import { BarChart, Logout, MoneyBag, Notification, Package } from "../icons";
 import { Button } from "../common/button/button";
 import { Skeleton } from "../common/skeleton";
+
+interface valueProp {
+  id: number;
+  name: string;
+  location: string;
+  icon: React.ReactNode;
+}
+
+interface siderBarRouteProp {
+  user: string;
+  values: valueProp[];
+}
 const Sidebar = () => {
-  const { isLoading, typeOfUser } = useAppStore();
-  const userType: string = typeOfUser || "default";
+  const {
+    isLoading,
+    typeOfUser,
+    logout,
+    dashboardSession,
+    setDashboardSession,
+  } = useAppStore();
+  const [userType, setUserType] = useState(typeOfUser || "default");
+  //   const userType: string = ;
   const [isOpen, setIsOpen] = useState(false);
-  //   console.log(userType);
+  // console.log(userType);
+  // console.log(isLoading);
+  // console.log(typeOfUser);
   const pageRoute = useLocation().pathname;
   const navigate = useNavigate();
   //   console.log(pageRoute);
 
-  const sideBars = [
+  useEffect(() => {
+    if (typeOfUser) {
+      setTimeout(() => {
+        setUserType(typeOfUser);
+      }, 2000);
+    }
+  }, [typeOfUser]);
+
+  const sideBars: siderBarRouteProp[] = [
     {
       user: "default",
       values: [
@@ -70,7 +100,7 @@ const Sidebar = () => {
       ],
     },
     {
-      user: "riders",
+      user: "rider",
       values: [
         {
           id: 1,
@@ -87,7 +117,7 @@ const Sidebar = () => {
         {
           id: 3,
           name: "Earnings",
-          location: "/app/rider/earning",
+          location: "/app/rider/earnings",
           icon: <MoneyBag size={24} />,
         },
         {
@@ -115,8 +145,32 @@ const Sidebar = () => {
         },
         {
           id: 2,
+          name: "Pickup & Delivery",
+          location: "/app/manage/pickup-delivery",
+          icon: <Package size={24} />,
+        },
+        {
+          id: 3,
+          name: "Drivers",
+          location: "/app/manage/drivers",
+          icon: <Bike size={24} />,
+        },
+        {
+          id: 4,
+          name: "Customers",
+          location: "/app/manage/customers",
+          icon: <Users size={24} />,
+        },
+        {
+          id: 5,
+          name: "Analytics",
+          location: "/app/manage/analytics",
+          icon: <BarChart size={24} />,
+        },
+        {
+          id: 6,
           name: "Settings",
-          location: "/app/manage/settings",
+          location: "/app/settings",
           icon: <Settings size={24} />,
         },
       ],
@@ -133,6 +187,16 @@ const Sidebar = () => {
 
   const routeTo = (location: string) => {
     navigate(location);
+  };
+
+  const handleSidebarClick = (name: string, location: string) => {
+    routeTo(location);
+    setIsOpen(!isOpen);
+    if (name === "Dashboard") {
+      if (dashboardSession == "profile") {
+        setDashboardSession("home");
+      }
+    }
   };
   return (
     <div
@@ -161,8 +225,8 @@ const Sidebar = () => {
               : sidebarVal[0]?.values?.map((val) => (
                   <Button
                     key={val.id}
-                    className={`w-full text-lg h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "bg-(--sidebar-active-text)/5 text-(--sidebar-active-text) h-12" : "bg-transparent hover:bg-(--sidebar-active-text)/5 hover:text-(--sidebar-active-text) hover:h-11 transition-[height]"}`}
-                    onClick={() => routeTo(val.location)}
+                    className={`w-full text-lg font-normal h-6 flex justify-start items-center gap-2 px-2! py-0! rounded-sm ${pageRoute === val.location ? "hover:bg-sidebar-active-text/5 bg-sidebar-active-text/5 text-sidebar-active-text h-12" : "bg-transparent hover:bg-sidebar-active-text/5 hover:text-sidebar-active-text hover:h-11 transition-[height]"}`}
+                    onClick={() => handleSidebarClick(val.name, val.location)}
                   >
                     {val.icon}
                     {val.name}
@@ -173,7 +237,10 @@ const Sidebar = () => {
         {isLoading ? (
           <Skeleton className="w-full h-12 rounded-sm" />
         ) : (
-          <Button className="text-lg flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent">
+          <Button
+            className="text-lg font-normal flex justify-start items-center gap-2 px-2! py-0! w-full rounded-sm bg-transparent hover:text-red-500 hover:bg-transparent"
+            onClick={logout}
+          >
             <Logout size={24} className="hover:text-red-500" />
             <span>Logout</span>
           </Button>

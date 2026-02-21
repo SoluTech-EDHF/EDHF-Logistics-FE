@@ -11,11 +11,11 @@ const iconMap: Record<string, React.ReactNode> = {
   Rating: <Star size={24} className="text-app-orange" />,
 };
 
-const colorMap: Record<string, string> = {
-  "Active Deliveries": "app-orange",
-  "Completed Today": "app-blue",
-  "Today's Earnings": "app-green",
-  Rating: "app-orange",
+const bgColorMap: Record<string, string> = {
+  "Active Deliveries": "bg-app-orange/10",
+  "Completed Today": "bg-app-blue/10",
+  "Today's Earnings": "bg-app-green/10",
+  Rating: "bg-app-orange/10",
 };
 
 export interface StatusItem {
@@ -23,7 +23,7 @@ export interface StatusItem {
   icon: React.ReactNode;
   name: string;
   value: number;
-  color: string;
+  bgColor: string;
 }
 
 interface StatusItemProps {
@@ -38,9 +38,7 @@ interface StatusProps {
 const StatusComponent = ({ status }: StatusItemProps) => {
   return (
     <div className="w-full min-h-33.75 px-6 py-5.25 bg-white rounded-md flex flex-col items-start gap-1.25 shadow-md">
-      <div className={`rounded-md p-2 bg-${status.color}/10`}>
-        {status.icon}
-      </div>
+      <div className={`rounded-md p-2 ${status.bgColor}`}>{status.icon}</div>
       {status.name == "Today's Earnings" ? (
         <div className="pl-2 flex items-center justify-center gap-1">
           <Naira size={22} className="text-[#212121]" />
@@ -63,7 +61,7 @@ const Status = ({ status, isLoading }: StatusProps) => {
     ),
     name: item.name,
     value: item.value,
-    color: colorMap[item.name] ?? "app-orange/5",
+    bgColor: bgColorMap[item.name] ?? "bg-app-orange/10",
   }));
 
   return (

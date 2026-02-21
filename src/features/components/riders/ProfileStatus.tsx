@@ -12,7 +12,7 @@ const ProfileStatusCard = ({ status }: StatusItemProps) => {
   return (
     <div className="w-full min-h-46.75 bg-white shadow-md rounded-md flex items-center justify-center">
       <div className="flex flex-col items-center">
-        <div className={`rounded-md p-2 bg-${status.color}/10 mb-3.5`}>
+        <div className={`rounded-md p-2 ${status.bgColor} mb-3.5`}>
           {status.icon}
         </div>
         <p className="text-xl font-bold text-[#212121]">
@@ -37,28 +37,28 @@ const ProfileStatus = ({ isLoading }: { isLoading: boolean }) => {
           icon: <Star size={24} className="text-app-orange" />,
           name: "Rating",
           value: 4.9,
-          color: "app-orange",
+          bgColor: "bg-app-orange/10",
         },
         {
           id: 2,
           icon: <Package size={24} className="text-app-blue" />,
           name: "Deliveries This Month",
           value: 128,
-          color: "app-blue",
+          bgColor: "bg-app-blue/10",
         },
         {
           id: 3,
           icon: <Clock3 size={24} className="text-app-green" />,
           name: "On-Time Delivery Rate",
           value: 98,
-          color: "app-green",
+          bgColor: "bg-app-green/10",
         },
         {
           id: 4,
           icon: <Medal size={24} className="text-app-orange" />,
           name: "Success Rate Overall",
           value: 99.5,
-          color: "app-orange",
+          bgColor: "bg-app-orange/10",
         },
       ]);
     }, 500);

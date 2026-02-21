@@ -32,7 +32,7 @@ const NotificationComponent = ({
       {notications.isTitle ? null : (
         <div className="flex">
           <Switch
-            id="notifications"
+            id={`notification-${notications.id}`}
             checked={isEnabled}
             onChange={(val) => setIsEnabled(val)}
           />

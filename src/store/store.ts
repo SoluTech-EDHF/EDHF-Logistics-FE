@@ -13,7 +13,7 @@ export const useAppStore = create<AppState>()(
       }),
       {
         name: "edhf-logistics-storage-v1",
-        version: 1,
+        version: 2,
       },
     ),
     {

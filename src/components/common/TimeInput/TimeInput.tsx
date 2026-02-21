@@ -1,3 +1,4 @@
+import { formartTime } from "@/utils";
 import { useRef } from "react";
 
 interface TimeInputProps {
@@ -7,15 +8,6 @@ interface TimeInputProps {
 
 const TimeInput = ({ value, onChange }: TimeInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const formatTo12Hr = (time24: string) => {
-    if (!time24) return "";
-    const [hours, minutes] = time24.split(":");
-    const h = parseInt(hours);
-    const ampm = h >= 12 ? "PM" : "AM";
-    const hour12 = h % 12 || 12;
-    return `${hour12.toString().padStart(2, "0")}:${minutes} ${ampm}`;
-  };
 
   const handleClick = () => {
     inputRef.current?.showPicker();
@@ -35,7 +27,7 @@ const TimeInput = ({ value, onChange }: TimeInputProps) => {
       />
       <div className="flex items-center h-full w-full bg-[#EDEDED] rounded-md justify-center">
         <span className="text-lg font-normal">
-          {value ? formatTo12Hr(value) : "--:-- --"}
+          {value ? formartTime(value) : "--:-- --"}
         </span>
       </div>
     </div>

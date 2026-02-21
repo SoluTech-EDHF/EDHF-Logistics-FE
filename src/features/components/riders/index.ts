@@ -18,3 +18,7 @@ export { default as RecentTransactions } from "./RecentTransactions";
 export { default as SettingHeader } from "./SettingHeader";
 export { default as NotificationSettings } from "./NotificationSettings";
 export { default as AvailabilitySettings } from "./AvailabilitySettings";
+
+// history components
+export { default as HistoryHeader } from "./HistoryHeader";
+export { default as DeliveryHistory } from "./DeliveryHistory";

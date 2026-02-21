@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/common/skeleton";
 import { Naira } from "@/components/icons";
-import { formatNumber } from "@/utils";
+import { formartNumber } from "@/utils";
 import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -40,7 +40,7 @@ const RecentTransaction = ({
           <div className="flex items-center">
             <Naira size={24} />
             <p className="text-[#212121] text-lg font-medium">
-              {formatNumber(transaction.transactionAmount)}
+              {formartNumber(transaction.transactionAmount)}
             </p>
           </div>
           <p

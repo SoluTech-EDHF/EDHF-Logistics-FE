@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { formatNumber } from "@/utils";
+import { formartNumber } from "@/utils";
 import { Naira } from "@/components/icons";
 import { Skeleton } from "@/components/common/skeleton";
 
@@ -76,12 +76,12 @@ const WeeklyPerformance = ({ isLoading }: { isLoading?: boolean }) => {
                   <div className="flex items-center justify-center">
                     <Naira size={38} className="text-[#212121]" />
                     <p className="font-bold text-xl">
-                      {formatNumber(item.value)}
+                      {formartNumber(item.value)}
                     </p>
                   </div>
                 ) : (
                   <p className="font-bold text-xl">
-                    {formatNumber(item.value)}
+                    {formartNumber(item.value)}
                   </p>
                 )}
                 <h4 className="font-normal text-lg text-[#212121]/85">

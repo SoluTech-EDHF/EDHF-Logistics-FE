@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/common/skeleton";
 import { Naira } from "@/components/icons";
 import { useEffect, useState } from "react";
-import { formatNumber } from "@/utils";
+import { formartNumber } from "@/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
 interface analyticComponentProp {
   id: number;
@@ -29,7 +29,7 @@ const AnalyticsComponents = ({
           <div className="flex items-center">
             <Naira size={24} />
             <p className="text-[#212121] text-lg font-normal">
-              {formatNumber(analysis.value)}
+              {formartNumber(analysis.value)}
             </p>
           </div>
         </div>

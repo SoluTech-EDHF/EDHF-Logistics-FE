@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/common/skeleton";
 import { Money, Naira, Package } from "@/components/icons";
 import type { StatusProp } from "@/features/users/riders/app";
-import { formatNumber } from "@/utils";
+import { formartNumber } from "@/utils";
 import { CircleCheck, Star } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -42,10 +42,12 @@ const StatusComponent = ({ status }: StatusItemProps) => {
       {status.name == "Today's Earnings" ? (
         <div className="pl-2 flex items-center justify-center gap-1">
           <Naira size={22} className="text-[#212121]" />
-          <h3 className="text-xl font-bold">{formatNumber(status.value)}</h3>
+          <h3 className="text-xl font-bold">{formartNumber(status.value)}</h3>
         </div>
       ) : (
-        <h3 className="text-xl font-bold pl-2">{formatNumber(status.value)}</h3>
+        <h3 className="text-xl font-bold pl-2">
+          {formartNumber(status.value)}
+        </h3>
       )}
 
       <p className="text-lg text-[#212121D9]/85 pl-2">{status.name}</p>

@@ -14,6 +14,8 @@ export const useAppStore = create<AppState>()(
       {
         name: "edhf-logistics-storage-v1",
         version: 2,
+        migrate: (persistedState) => persistedState as AppState,
+        // migrate: () => ({}) as AppState,
       },
     ),
     {

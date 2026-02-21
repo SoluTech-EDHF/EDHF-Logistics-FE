@@ -9,9 +9,9 @@ type Props = {
 export const ProtectedRoutes: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
-  const isAuthenticated = useAppStore((s) => s.isAuthenticated);
+  const { isAuthenticated, typeOfUser, user } = useAppStore();
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !typeOfUser && !user) {
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 

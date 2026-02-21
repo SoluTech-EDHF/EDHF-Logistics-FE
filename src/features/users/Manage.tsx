@@ -2,16 +2,17 @@ import { logger } from "@/utils";
 import { AdminApp } from "./admin";
 import { RiderApp } from "./riders";
 import { CustomerApp } from "./customers";
-type UserRole = "Admin" | "Rider" | "User";
+export type UserRole = "admin" | "rider" | "user";
 
 const componentMap: Record<UserRole, React.FC> = {
-  Admin: AdminApp,
-  Rider: RiderApp,
-  User: CustomerApp,
+  admin: AdminApp,
+  rider: RiderApp,
+  user: CustomerApp,
 };
 
 const Manage = ({ user }: { user: UserRole | null }) => {
   logger.log("Manage", `Manage Users for ${user}`);
+
   if (!user) {
     return <div>Loading...</div>;
   }
